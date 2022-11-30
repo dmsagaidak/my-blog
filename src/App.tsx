@@ -6,7 +6,7 @@ import About from "./containers/About/About";
 import Add from "./containers/Add/Add";
 import Home from "./containers/Home/Home";
 import axiosApi from "./axiosApi";
-import {Post} from "./types";
+import {Post, PostsList} from "./types";
 
 
 
@@ -14,26 +14,23 @@ function App() {
   const [myPosts, setMyPosts] = useState<Post[]>([])
 
   const getPosts = useCallback(async () => {
-    const response = await axiosApi.get( '/posts.json');
-    const keys = Object.keys(response.data);
+    try{
+      const postResponse = await axiosApi.get<PostsList>( '/posts.json');
+      const posts = Object.keys(postResponse.data).map(key =>{
+        const post = postResponse.data[key];
+        post.id = key
+        return post
+      })
 
-    const promises = keys.map(async key => {
-      const response = await axiosApi.get<Post>('/posts/' + key + '.json');
-      console.log(response)
-      return {
-        id: key,
-        author: response.data.author,
-        message: response.data.message
-      }
+      setMyPosts(posts)
+    }catch (e) {
+      console.log(e)
+    }
 
-    })
-
-    const postResponse = await Promise.all(promises);
-    setMyPosts(postResponse)
   }, []);
 
   useEffect(() => {
-
+    void getPosts();
   }, [getPosts]);
 
 

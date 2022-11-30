@@ -10,6 +10,7 @@ const Add = () => {
 
   const [post, setPost] = useState<Post>({
     id: '',
+    title: '',
     author: '',
     message: ''
   });
@@ -46,6 +47,17 @@ const Add = () => {
           type="text"
           className="form-control"
           value={post.author}
+          onChange={onPostChange}
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="title">Title</label>
+        <input
+          id="title"
+          name="title"
+          type="text"
+          className="form-control"
+          value={post.title}
           onChange={onPostChange}
         />
       </div>
