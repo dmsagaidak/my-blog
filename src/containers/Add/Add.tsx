@@ -9,6 +9,7 @@ const Add = () => {
   const navigate = useNavigate();
 
   const [post, setPost] = useState<Post>({
+    id: '',
     author: '',
     message: ''
   });
