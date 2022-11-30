@@ -3,6 +3,8 @@ import {Route, Routes} from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Contacts from "./containers/Contacts/Contacts";
 import About from "./containers/About/About";
+import Add from "./containers/Add/Add";
+
 
 function App() {
   return (
@@ -12,6 +14,9 @@ function App() {
       </header>
       <main className="container-fluid">
         <Routes>
+          <Route path="add" element={(
+            <Add/>
+          )}/>
           <Route path="about" element={(
             <About/>
           )}/>
