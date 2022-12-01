@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {useNavigate, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import axiosApi from "../../axiosApi";
 import {PostApi} from "../../types";
 import PostForm from "../../components/PostForm/PostForm";
@@ -11,7 +11,7 @@ const EditPost = () => {
 
   const getOnePost = useCallback(async () => {
     try{
-      const postResponse = await axiosApi.get<PostApi>('/posts/' + id + '.json')
+      const postResponse = await axiosApi.get<PostApi>('/posts/' + id + '.json');
       setPost(postResponse.data)
     }finally {
 
@@ -43,7 +43,7 @@ const EditPost = () => {
           currentPost={post}
         />
       )}
-
+        <Link to={'/'} className="btn btn-danger ms-4">Back</Link>
     </div>
   );
 };

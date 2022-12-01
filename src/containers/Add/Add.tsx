@@ -2,7 +2,7 @@ import React from 'react';
 import PostForm from '../../components/PostForm/PostForm';
 import {PostApi} from "../../types";
 import axiosApi from "../../axiosApi";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 
 const Add: React.FC = () => {
@@ -18,6 +18,7 @@ const Add: React.FC = () => {
   return(
     <div>
       <PostForm onSubmit={addPost}/>
+      <Link to={'/'} className="btn btn-danger ms-4">Back</Link>
     </div>
   )
 

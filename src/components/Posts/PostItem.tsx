@@ -24,8 +24,8 @@ const PostItem: React.FC<Props> = ({post}) => {
     <div className="card mb-2 p-1">
       <p className="card-title m-0"><strong>{post.title}</strong></p>
       <p className="card-text small m-0">by <strong>{post.author}</strong></p>
-      <div>
-        <button className="btn btn-sm btn-primary">See More</button>
+      <div className="d-flex gap-1">
+        <Link to={"/read-more/" + post.id} className="btn btn-sm btn-primary">Read More</Link>
         <Link to={"edit-post/" + post.id} className="btn btn-sm btn-secondary">Edit</Link>
         <button className="btn btn-sm btn-danger" onClick={() => removePost(post)}>Remove</button>
       </div>

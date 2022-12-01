@@ -8,6 +8,7 @@ import Home from "./containers/Home/Home";
 import axiosApi from "./axiosApi";
 import {Post, PostsList} from "./types";
 import EditPost from "./containers/EditPost/EditPost";
+import ReadMore from "./containers/ReadMore/ReadMore";
 
 
 
@@ -63,6 +64,9 @@ function App() {
           )}/>
           <Route path="edit-post/:id" element={(
             <EditPost/>
+          )}/>
+          <Route path="/read-more/:id" element={(
+            <ReadMore/>
           )}/>
           <Route path="about" element={(
             <About/>
