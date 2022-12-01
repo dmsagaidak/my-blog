@@ -5,6 +5,14 @@ export interface Post {
   message: string;
 }
 
+export type PostApi = Omit<Post, 'id'>
+
+export interface PostMutation {
+  title: string;
+  author: string;
+  message: string;
+}
+
 export interface PostsList {
   [id: string]: Post
 }
