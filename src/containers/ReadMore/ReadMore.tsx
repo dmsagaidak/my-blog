@@ -3,6 +3,7 @@ import PostItem from "../../components/Posts/PostItem";
 import {useParams} from "react-router-dom";
 import {Post, PostApi} from "../../types";
 import axiosApi from "../../axiosApi";
+import Spinner from "../../components/Spinner/Spinner";
 
 const ReadMore = () => {
   const {id} = useParams();
@@ -11,22 +12,22 @@ const ReadMore = () => {
     title: '',
     author: '',
     message: ''
-  })
+  });
+  const [loading, setLoading] = useState(false);
 
   const getOnePost = useCallback(async () => {
     try{
+      setLoading(true)
       const postResponse = await axiosApi.get<PostApi>('/posts/' + id + '.json');
       const received = {
         ...postResponse.data,
         id: id
       }
-      console.log(received);
-      console.log(id)
-
-
       setPost(received)
+    }catch(e){
+      console.error(e)
     }finally {
-
+      setLoading(false)
     }
   }, [id]);
 
@@ -36,7 +37,9 @@ const ReadMore = () => {
 
   return (
     <div className="mt-3">
-      <PostItem post={post}/>
+      {loading ? <Spinner/> :
+        (<PostItem post={post}/>)
+      }
     </div>
   );
 };

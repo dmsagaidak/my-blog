@@ -8,17 +8,16 @@ interface Props {
 }
 
 const PostItem: React.FC<Props> = ({post}) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const removePost = async (post: Post) => {
     try{
       await axiosApi.delete('/posts/' + post.id + '.json');
       navigate('/');
-    }finally{
-
+    }catch(e){
+      console.error(e)
     }
   }
-
 
   return (
     <div className="card mb-2 p-1">
